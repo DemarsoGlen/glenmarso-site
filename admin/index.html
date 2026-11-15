@@ -1,0 +1,25 @@
+backend:
+  name: github
+  repo: DemarsoGlen/glenmarso-site
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "homepage"
+    label: "Главная страница"
+    files:
+      - name: "hero"
+        label: "Главный экран"
+        file: "index.html"
+        fields:
+          - { label: "Заголовок (Имя)", name: "hero_title", widget: "string" }
+          - { label: "Слоган", name: "hero_tagline", widget: "string" }
+          - { label: "Описание", name: "hero_subtitle", widget: "text" }
+      - name: "about"
+        label: "Об авторе"
+        file: "index.html"
+        fields:
+          - { label: "Основной текст", name: "about_text_1", widget: "text" }
+          - { label: "Цитата", name: "about_quote", widget: "text" }
