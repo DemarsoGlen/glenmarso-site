@@ -1,167 +1,141 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Глен Марсо — Бутик креативных проектов</title>
-    <meta name="description" content="Авторский бутик книг, музыки и артов Глена Марсо. Клуб любителей фантастики и креатива.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg-deep: #0a0e27; --bg-dark: #1a1a2e; --gold: #d4af37;
-            --purple: #6b4ee6; --cyan: #00ced1; --text-light: #ffffff; --text-muted: #a0a0b0;
-        }
-        body { font-family: 'Inter', sans-serif; background: var(--bg-deep); color: var(--text-light); line-height: 1.6; overflow-x: hidden; }
-        .stars { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-        .star { position: absolute; background: white; border-radius: 50%; animation: twinkle 3s infinite; }
-        @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
-        .hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: radial-gradient(ellipse at center, rgba(107, 78, 230, 0.15) 0%, transparent 70%); }
-        .hero-content { animation: fadeInUp 1s ease-out; }
-        .hero h1 { font-family: 'Cinzel', serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 700; background: linear-gradient(135deg, var(--gold) 0%, var(--purple) 50%, var(--cyan) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; letter-spacing: 0.05em; }
-        .hero .tagline { font-family: 'Orbitron', sans-serif; font-size: clamp(1rem, 2.5vw, 1.5rem); color: var(--text-muted); margin-bottom: 2rem; letter-spacing: 0.1em; }
-        .hero .subtitle { font-size: clamp(1.1rem, 2vw, 1.3rem); color: var(--text-light); max-width: 600px; margin: 0 auto 3rem; font-weight: 300; line-height: 1.8; }
-        .cta-button { display: inline-block; padding: 1rem 2.5rem; background: linear-gradient(135deg, var(--purple), var(--cyan)); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(107, 78, 230, 0.4); }
-        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 6px 30px rgba(107, 78, 230, 0.6); }
-        section { padding: 6rem 0; position: relative; }
-        .section-title { font-family: 'Cinzel', serif; font-size: clamp(2rem, 5vw, 3rem); text-align: center; margin-bottom: 3rem; color: var(--gold); }
-        .about { background: linear-gradient(180deg, transparent 0%, rgba(26, 26, 46, 0.5) 100%); }
-        .about-content { max-width: 800px; margin: 0 auto; text-align: center; }
-        .about-text { font-size: 1.2rem; line-height: 1.9; color: var(--text-light); margin-bottom: 2rem; }
-        .about-quote { font-family: 'Cinzel', serif; font-style: italic; font-size: 1.4rem; color: var(--cyan); border-left: 3px solid var(--gold); padding-left: 2rem; margin: 3rem auto; text-align: left; max-width: 600px; }
-        .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .work-card { background: rgba(26, 26, 46, 0.6); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 15px; padding: 2rem; transition: all 0.3s ease; backdrop-filter: blur(10px); }
-        .work-card:hover { transform: translateY(-5px); border-color: var(--gold); box-shadow: 0 10px 40px rgba(212, 175, 55, 0.2); }
-        .work-icon { font-size: 3rem; margin-bottom: 1rem; }
-        .work-card h3 { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 1rem; }
-        .work-card p { color: var(--text-muted); line-height: 1.7; }
-        .club { background: linear-gradient(180deg, rgba(26, 26, 46, 0.5) 0%, transparent 100%); text-align: center; }
-        .club-content { max-width: 700px; margin: 0 auto; }
-        .club-description { font-size: 1.2rem; line-height: 1.8; margin-bottom: 2rem; }
-        .club-features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
-        .feature { padding: 1.5rem; background: rgba(107, 78, 230, 0.1); border-radius: 10px; border: 1px solid rgba(107, 78, 230, 0.3); }
-        .feature-icon { font-size: 2rem; margin-bottom: 0.5rem; }
-        .feature h4 { color: var(--cyan); margin-bottom: 0.5rem; }
-        .contact { text-align: center; padding: 4rem 0; }
-        .social-links { display: flex; justify-content: center; gap: 2rem; margin: 2rem 0; flex-wrap: wrap; }
-        .social-link { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; background: rgba(26, 26, 46, 0.8); border: 1px solid var(--gold); border-radius: 50px; color: var(--text-light); text-decoration: none; transition: all 0.3s ease; }
-        .social-link:hover { background: var(--gold); color: var(--bg-deep); transform: translateY(-2px); }
-        footer { text-align: center; padding: 2rem 0; border-top: 1px solid rgba(212, 175, 55, 0.2); color: var(--text-muted); }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        @media (max-width: 768px) { section { padding: 4rem 0; } .works-grid { grid-template-columns: 1fr; } .social-links { flex-direction: column; align-items: center; } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Глен Марсо — Бутик произведений</title>
+<meta name="description" content="Авторский бутик книг, музыки и артов Глена Марсо. Клуб любителей фантастики и креатива.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root { --bg-deep:#0a0e27; --gold:#d4af37; --purple:#6b4ee6; --cyan:#00ced1; --text-light:#fff; --text-muted:#a0a0b0; }
+body { font-family:'Inter',sans-serif; background:var(--bg-deep); color:var(--text-light); line-height:1.6; overflow-x:hidden; }
+.stars { position:fixed; inset:0; pointer-events:none; z-index:0; }
+.star { position:absolute; background:#fff; border-radius:50%; animation:twinkle 3s infinite; }
+@keyframes twinkle { 0%,100%{opacity:.3} 50%{opacity:1} }
+.container { max-width:1200px; margin:0 auto; padding:0 20px; position:relative; z-index:1; }
+.hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; background:radial-gradient(ellipse at center, rgba(107,78,230,.15) 0%, transparent 70%); }
+.hero-content { animation:fadeInUp 1s ease-out; }
+.hero h1 { font-family:'Cinzel',serif; font-size:clamp(3rem,8vw,6rem); background:linear-gradient(135deg,var(--gold),var(--purple) 50%,var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; margin-bottom:1rem; letter-spacing:.05em; }
+.tagline { font-family:'Orbitron',sans-serif; font-size:clamp(1rem,2.5vw,1.5rem); color:var(--text-muted); margin-bottom:2rem; letter-spacing:.1em; }
+.subtitle { font-size:clamp(1.1rem,2vw,1.3rem); max-width:600px; margin:0 auto 3rem; font-weight:300; line-height:1.8; }
+.cta-button { display:inline-block; padding:1rem 2.5rem; background:linear-gradient(135deg,var(--purple),var(--cyan)); color:#fff; text-decoration:none; border-radius:50px; font-weight:600; font-size:1.1rem; transition:.3s; box-shadow:0 4px 20px rgba(107,78,230,.4); }
+.cta-button:hover { transform:translateY(-3px); box-shadow:0 6px 30px rgba(107,78,230,.6); }
+section { padding:6rem 0; position:relative; }
+.section-title { font-family:'Cinzel',serif; font-size:clamp(2rem,5vw,3rem); text-align:center; margin-bottom:3rem; color:var(--gold); }
+.about { background:linear-gradient(180deg,transparent,rgba(26,26,46,.5)); }
+.about-content { max-width:800px; margin:0 auto; text-align:center; }
+.about-text { font-size:1.2rem; line-height:1.9; margin-bottom:2rem; }
+.about-quote { font-family:'Cinzel',serif; font-style:italic; font-size:1.4rem; color:var(--cyan); border-left:3px solid var(--gold); padding-left:2rem; margin:3rem auto; text-align:left; max-width:600px; }
+.works-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; margin-top:3rem; }
+.work-card { background:rgba(26,26,46,.6); border:1px solid rgba(212,175,55,.2); border-radius:15px; padding:2rem; transition:.3s; }
+.work-card:hover { transform:translateY(-5px); border-color:var(--gold); box-shadow:0 10px 40px rgba(212,175,55,.2); }
+.work-icon { font-size:3rem; margin-bottom:1rem; }
+.work-card h3 { font-family:'Cinzel',serif; font-size:1.5rem; color:var(--gold); margin-bottom:1rem; }
+.work-card p { color:var(--text-muted); line-height:1.7; }
+.club { background:linear-gradient(180deg,rgba(26,26,46,.5),transparent); text-align:center; }
+.club-content { max-width:700px; margin:0 auto; }
+.club-description { font-size:1.2rem; line-height:1.8; margin-bottom:2rem; }
+.contact { text-align:center; padding:4rem 0; }
+.social-links { display:flex; justify-content:center; gap:2rem; margin:2rem 0; flex-wrap:wrap; }
+.social-link { padding:.8rem 1.5rem; background:rgba(26,26,46,.8); border:1px solid var(--gold); border-radius:50px; color:var(--text-light); text-decoration:none; transition:.3s; }
+.social-link:hover { background:var(--gold); color:var(--bg-deep); transform:translateY(-2px); }
+footer { text-align:center; padding:2rem 0; border-top:1px solid rgba(212,175,55,.2); color:var(--text-muted); }
+@keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+@media (max-width:768px){ section{padding:4rem 0} .works-grid{grid-template-columns:1fr} .social-links{flex-direction:column;align-items:center} }
+</style>
 </head>
 <body>
-    <div class="stars" id="stars"></div>
-    <section class="hero">
-        <div class="hero-content">
-            <h1>ГЛЕН МАРСО</h1>
-            <p class="tagline">БУТИК КРЕАТИВНЫХ ПРОЕКТОВ</p>
-            <p class="subtitle">Поэзия, проза, музыка и визуальные артефакты<br>на пересечении фантастики и реальности</p>
-            <a href="#works" class="cta-button">Исследовать вселенную</a>
-        </div>
-    </section>
-    <section class="about">
-        <div class="container">
-            <h2 class="section-title">О авторе</h2>
-            <div class="about-content">
-                <p class="about-text">Глен Марсо — поэт и создатель миров, работающий на стыке литературной традиции и гранж-эклектики. Его произведения — это путешествие сквозь слои реальности, где классическое стихосложение встречается с экспериментальными отступлениями, а экзистенциальная глубина — с иронией и протестом.</p>
-                <blockquote class="about-quote">"Творчество — это не побег от реальности, а способ создать новую, где можно дышать полной грудью."</blockquote>
-                <p class="about-text">Каждая книга, каждый арт-объект, каждая музыкальная композиция — это приглашение в уникальную вселенную, где фантастика становится зеркалом, а креатив — способом познания себя и мира.</p>
-            </div>
-        </div>
-    </section>
-    <section id="works">
-        <div class="container">
-            <h2 class="section-title">Произведения</h2>
-            <div class="works-grid">
-                <div class="work-card">
-                    <div class="work-icon">📚</div>
-                    <h3>Книги</h3>
-                    <p>Поэтические сборники и прозаические произведения. Печатные и электронные издания, коллекционные варианты с автографом.</p>
-                </div>
-                <div class="work-card">
-                    <div class="work-icon">🎨</div>
-                    <h3>Визуальные арты</h3>
-                    <p>Фотографии, иллюстрации, гобелены с отрывками произведений. Уникальные арт-объекты для вашего пространства.</p>
-                </div>
-                <div class="work-card">
-                    <div class="work-icon">🎵</div>
-                    <h3>Музыка</h3>
-                    <p>Атмосферные сборники, саундтреки к книгам, экспериментальные композиции. Цифровые и физические носители.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="club">
-        <div class="container">
-            <h2 class="section-title">Клуб по интересам</h2>
-            <div class="club-content">
-                <p class="club-description">Закрытое сообщество для тех, кто ценит фантастику, креатив и глубокие смыслы. Присоединяйтесь к клубу любителей вселенной Глена Марсо.</p>
-                <div class="club-features">
-                    <div class="feature">
-                        <div class="feature-icon">💬</div>
-                        <h4>Обсуждения</h4>
-                        <p>Форум для диалогов о произведениях, философии и творчестве</p>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">🎁</div>
-                        <h4>Эксклюзив</h4>
-                        <p>Ранний доступ к новым работам и бонусный контент</p>
-                    </div>
-                    <div class="feature">
-                        <div class="feature-icon">🌟</div>
-                        <h4>Сообщество</h4>
-                        <p>Единомышленники, встречи, совместные проекты</p>
-                    </div>
-                </div>
-                <a href="#contact" class="cta-button">Узнать больше</a>
-            </div>
-        </div>
-    </section>
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Связь</h2>
-            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Полная версия бутика с магазином и клубом скоро откроется.<br>Следите за обновлениями и присоединяйтесь к сообществу.</p>
-            <div class="social-links">
-                <a href="mailto:contact@glenmarso.com" class="social-link">✉️ Email</a>
-                <a href="#" class="social-link">📖 Telegram</a>
-                <a href="#" class="social-link">📷 Instagram</a>
-            </div>
-        </div>
-    </section>
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Глен Марсо. Все права защищены.</p>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem;">Бутик произведений и клуб любителей фантастики</p>
-        </div>
-    </footer>
-    <script>
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            for (let i = 0; i < 150; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                const size = Math.random() * 3 + 1;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.animationDelay = Math.random() * 3 + 's';
-                starsContainer.appendChild(star);
-            }
-        }
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-        createStars();
-    </script>
+<div class="stars" id="stars"></div>
+
+<section class="hero">
+  <div class="hero-content">
+    <h1 data-c="hero_title">Глен Марсо</h1>
+    <p class="tagline" data-c="hero_tagline">БУТИК ПРОИЗВЕДЕНИЙ</p>
+    <p class="subtitle" data-c="hero_subtitle"></p>
+    <a href="#works" class="cta-button" data-c="hero_button">Исследовать вселенную</a>
+  </div>
+</section>
+
+<section class="about">
+  <div class="container">
+    <h2 class="section-title" data-c="about_title">О авторе</h2>
+    <div class="about-content">
+      <p class="about-text" data-c="about_text_1"></p>
+      <blockquote class="about-quote" data-c="about_quote"></blockquote>
+      <p class="about-text" data-c="about_text_2"></p>
+    </div>
+  </div>
+</section>
+
+<section id="works">
+  <div class="container">
+    <h2 class="section-title" data-c="works_title">Произведения</h2>
+    <div class="works-grid">
+      <div class="work-card"><div class="work-icon">📚</div><h3 data-c="work_1_title"></h3><p data-c="work_1_text"></p></div>
+      <div class="work-card"><div class="work-icon">🎨</div><h3 data-c="work_2_title"></h3><p data-c="work_2_text"></p></div>
+      <div class="work-card"><div class="work-icon">🎵</div><h3 data-c="work_3_title"></h3><p data-c="work_3_text"></p></div>
+    </div>
+  </div>
+</section>
+
+<section class="club">
+  <div class="container">
+    <h2 class="section-title" data-c="club_title">Клуб по интересам</h2>
+    <div class="club-content">
+      <p class="club-description" data-c="club_description"></p>
+      <a href="#contact" class="cta-button" data-c="club_button">Узнать больше</a>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container">
+    <h2 class="section-title" data-c="contact_title">Связь</h2>
+    <p style="font-size:1.2rem;margin-bottom:2rem" data-c="contact_text"></p>
+    <div class="social-links">
+      <a class="social-link" id="mail" href="#">✉️ Email</a>
+      <a class="social-link" id="tg" href="#">📖 Telegram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2026 Глен Марсо. Все права защищены.</p>
+    <p style="margin-top:.5rem;font-size:.9rem" data-c="footer_note"></p>
+  </div>
+</footer>
+
+<script>
+fetch('content.json?v=' + Date.now())
+  .then(r => r.json())
+  .then(data => {
+    document.querySelectorAll('[data-c]').forEach(el => {
+      const key = el.getAttribute('data-c');
+      if (data[key]) el.textContent = data[key];
+    });
+    if (data.email) document.getElementById('mail').href = 'mailto:' + data.email;
+    if (data.telegram) document.getElementById('tg').href = data.telegram;
+  })
+  .catch(e => console.warn('content.json не загрузился', e));
+
+const box = document.getElementById('stars');
+for (let i = 0; i < 150; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const size = Math.random() * 3 + 1;
+  s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${Math.random()*3}s`;
+  box.appendChild(s);
+}
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+</script>
 </body>
 </html>
