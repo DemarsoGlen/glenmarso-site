@@ -121,21 +121,29 @@ fetch('content.json?v=' + Date.now())
     });
     
     // Генерируем карточки произведений
-    if (data.works && data.works.length > 0) {
-      const grid = document.getElementById('works-grid');
-      data.works.forEach(work => {
-        const card = document.createElement('div');
-        card.className = 'work-card';
-        card.innerHTML = `
-          <div class="work-icon">${icons[work.type] || '✨'}</div>
-          <h3>${work.title}</h3>
-          <p>${work.description}</p>
-          ${work.price ? `<div class="work-price">${work.price}</div>` : ''}
-          ${work.link && work.link !== '#' ? `<a href="${work.link}" class="work-link">Подробнее →</a>` : ''}
-        `;
-        grid.appendChild(card);
-      });
+if (data.works && data.works.length > 0) {
+  const grid = document.getElementById('works-grid');
+  data.works.forEach(work => {
+    const card = document.createElement('div');
+    card.className = 'work-card';
+    
+    // Добавляем картинку, если она есть
+    let imageHTML = '';
+    if (work.image) {
+      imageHTML = `<img src="${work.image}" alt="${work.title}" style="width:100%; border-radius:10px; margin-bottom:1rem;">`;
     }
+
+    card.innerHTML = `
+      ${imageHTML}
+      <div class="work-icon">${icons[work.type] || '✨'}</div>
+      <h3>${work.title}</h3>
+      <p>${work.description}</p>
+      ${work.price ? `<div class="work-price">${work.price}</div>` : ''}
+      ${work.link && work.link !== '#' ? `<a href="${work.link}" class="work-link" target="_blank">Купить / Читать →</a>` : ''}
+    `;
+    grid.appendChild(card);
+  });
+}
     
     // Контакты
     if (data.email) document.getElementById('mail').href = 'mailto:' + data.email;
